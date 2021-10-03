@@ -1,0 +1,148 @@
+<h1>Angular Grid Layout - Playground</h1>
+<div class="controls-container-box">
+  <div class="box">
+    <div class="grid-item">Box Type</div>
+  </div>
+  <div *ngFor="let title of fetchData">
+    <div class="box-w" (click)="addItemToLayout(title.title)">
+      <div class="grid-item-se">{{title.title}} <img *ngIf="title.title == 'MU'" src="../../assets/MU-png.png">
+        <img *ngIf="title.title == 'U'" src="../../assets/U-png.png">
+      </div>
+  </div>
+</div>
+
+
+</div>
+
+<div class="playground-container">
+  <!-- <div class="layout-json"></div>
+  <div class="controls-container">
+    <button mat-raised-button (click)="generateLayout()">
+      Generate layout
+    </button>
+    <button mat-raised-button >Add item</button>
+    <mat-form-field color="accent">
+      <mat-label>Compact type</mat-label>
+      <mat-select
+        [value]="compactType"
+        (selectionChange)="onCompactTypeChange($event)"
+      >
+        <mat-option [value]="'vertical'">vertical</mat-option>
+        <mat-option [value]="'horizontal'">horizontal</mat-option>
+        <mat-option [value]="'none'">-</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field color="accent" style="width: 64px">
+      <mat-label>Columns</mat-label>
+      <input
+        matInput
+        type="number"
+        [value]="cols + ''"
+        (input)="onColsChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field color="accent" style="width: 64px">
+      <mat-label>Row height</mat-label>
+      <input
+        matInput
+        type="number"
+        [value]="rowHeight + ''"
+        (input)="onRowHeightChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field color="accent" style="width: 128px">
+      <mat-label>Drag Threshold</mat-label>
+      <input
+        matInput
+        type="number"
+        [value]="dragStartThreshold + ''"
+        (input)="onDragStartThresholdChange($event)"
+      />
+    </mat-form-field>
+    <mat-form-field color="accent">
+      <mat-label>Transition type</mat-label>
+      <mat-select
+        [value]="currentTransition"
+        (selectionChange)="onTransitionChange($event)"
+      >
+        <mat-option
+          *ngFor="let transition of transitions"
+          [value]="transition.value"
+          >{{transition.name}}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox
+      color="accent"
+      [checked]="disableDrag"
+      (change)="onDisableDragChange($event.checked)"
+    >
+      Disable drag
+    </mat-checkbox>
+    <mat-checkbox
+      color="accent"
+      [checked]="disableResize"
+      (change)="onDisableResizeChange($event.checked)"
+    >
+      Disable resize
+    </mat-checkbox>
+    <mat-checkbox
+      color="accent"
+      [checked]="disableRemove"
+      (change)="onDisableRemoveChange($event.checked)"
+    >
+      Disable remove
+    </mat-checkbox>
+    <mat-checkbox
+      color="accent"
+      [checked]="autoResize"
+      (change)="onAutoResizeChange($event.checked)"
+    >
+      Auto resize
+    </mat-checkbox>
+    <mat-chip-list>
+      <mat-chip color="accent" [selected]="isDragging">isDragging</mat-chip>
+      <mat-chip color="accent" [selected]="isResizing">isResizing</mat-chip>
+    </mat-chip-list>
+  </div> -->
+
+
+
+
+  <div class="grid-container" [class.small]="smallClass">
+    <ktd-grid
+      [cols]="cols"
+      [rowHeight]="rowHeight"
+      [layout]="layout"
+      [compactType]="compactType"
+      (dragStarted)="onDragStarted($event)"
+      (resizeStarted)="onResizeStarted($event)"
+      (dragEnded)="onDragEnded($event)"
+      (resizeEnded)="onResizeEnded($event)"
+      (layoutUpdated)="onLayoutUpdated($event)"
+    >
+      <ktd-grid-item
+        *ngFor="let item of layout; trackBy:trackById"
+        [id]="item.id"
+        [transition]="currentTransition"
+        [dragStartThreshold]="dragStartThreshold"
+        [draggable]="!disableDrag"
+        [resizable]="!disableResize"
+
+      >
+        <!-- <div class="grid-item-content">{{item.id}} <img src="../../assets/MU-png.png"></div>
+         -->
+
+         <img class="ii" src="../../assets/MU-png.png">
+        <div
+          class="grid-item-remove-handle"
+          *ngIf="!disableRemove"
+          (mousedown)="stopEventPropagation($event)"
+          (click)="removeItem(item.id)"
+        ></div>
+      </ktd-grid-item>
+    </ktd-grid>
+  </div>
+  <br>
+</div>
+

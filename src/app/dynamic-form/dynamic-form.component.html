@@ -1,0 +1,44 @@
+
+          <div style="margin: 50px;">
+          <form *ngIf="filterForm" [formGroup]="filterForm" class="filter-form">
+            <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: filterFields,formGroup:filterForm }">
+            </ng-container>
+          </form>
+
+          <ng-template #recursiveList let-filterFields let-formGroup="formGroup">
+            <div class="form-group">
+              <ng-container *ngFor="let item of filterFields">
+                <p>{{item.title}}</p>
+                <ng-container *ngIf="item.group; else default;">
+                  <div class="row pb-4">
+                    <div [formGroup]="formGroup.get(item.key)">
+                      <ng-container
+                        *ngTemplateOutlet="recursiveList; context:{ $implicit: item.group, formGroup: formGroup.get( item.key)}">
+                      </ng-container>
+                    </div>
+                  </div>
+
+
+
+                </ng-container>
+                <ng-template #default>
+                  <div class="col-md-3">
+                    <input *ngIf="item.type !== 'radio'" [type]="item.type" [formControl]="formGroup.get(item.key)" [placeholder]="item.title" [name]="item.key" />
+
+                    <div *ngIf="item.type == 'radio'" class="custom-control custom-radio">
+                      <input id="male" type="radio" class="custom-control-input" value="male" name="gender" ngModel required>
+                      <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div  *ngIf="item.type == 'radio'" class="custom-control custom-radio">
+                      <input id="female" type="radio" class="custom-control-input" value="female" name="gender" ngModel required>
+                      <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </div>
+          </ng-template>
+          <pre>{{filterForm?.value|json}}</pre>
+        </div>
+
+

@@ -1,0 +1,39 @@
+<div class="container">
+  <h2 class="py-4">Cars</h2>
+  <button type="button" class="btn btn-success" (click)="openDialog()">add</button>
+
+  <div class="form-group mb-4">
+    <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+  </div>
+
+  <table class="table" *ngIf="(cars | filter: searchText).length > 0; else noResults">
+    <colgroup>
+      <col width="5%">
+      <col width="*">
+      <col width="35%">
+      <col width="15%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Model</th>
+        <th scope="col">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars | filter: searchText; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{car.brand}}</td>
+        <td><img src="../../assets/36416d092b62ee9c5eb98cfb6873fd9521.png"></td>
+        <td>{{car.year}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noResults>
+    <p>No results found for "{{searchText}}".</p>
+  </ng-template>
+</div>
+
+

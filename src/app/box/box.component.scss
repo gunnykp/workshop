@@ -1,0 +1,138 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  .playground-container {
+    width: 100%;
+  }
+
+  .controls-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+
+    & > * {
+      margin: 8px 24px 8px 0;
+    }
+  }
+  .controls-container-box{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    & > * {
+      margin: 0px 0px 0px 0;
+    }
+  }
+  .grid-container {
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background: #313131;
+
+  }
+
+  ktd-grid-item {
+    color: #121212;
+    // content: url('../../assets/MU-png.png');
+  }
+
+  .grid-item-content {
+    box-sizing: border-box;
+    background: #ccc;
+    border: 1px solid;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-item{
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .grid-item-se{
+    width: 100%;
+    height: 150%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .grid-item-remove-handle {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    right: 0;
+
+    &::after {
+      content: "x";
+      color: #121212;
+      font-size: 16px;
+      font-weight: 300;
+      font-family: Arial, sans-serif;
+    }
+  }
+
+  // Add custom drag mouse styles
+  ktd-grid-item {
+    cursor: grab;
+
+    &.ktd-grid-item-dragging {
+      cursor: grabbing;
+    }
+  }
+
+  mat-chip-list,
+  mat-chip {
+    pointer-events: none;
+    user-select: none;
+  }
+  .box {
+    width: 128px;
+    height: 128px;
+    left: 244px;
+    top: 176px;
+
+    background: #f2f2f2;
+    border: 1px solid #dcdcdc;
+
+  }
+  .box-w {
+    width: 228px;
+    height: 128px;
+    left: 372px;
+    top: 176px;
+
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+  }
+ .ii{
+  position: relative;
+  top: 20px;
+  left: 20px;
+  transform: translateX(50%);
+
+  text-align: center;
+
+
+ }
+}

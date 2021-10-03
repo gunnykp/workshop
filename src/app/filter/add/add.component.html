@@ -1,0 +1,13 @@
+
+<div mat-dialog-content>
+  <form [formGroup]="add">
+    <div>
+      <label>Name</label><input formControlName="name">
+      <br>
+      <label>Photo</label><input formControlName="pic">
+      <br>
+      <label>Year</label><input formControlName="year">
+    </div>
+    <button type="button" class="btn btn-success"  (click)="addItem()"> ADD</button>
+  </form>
+</div>
